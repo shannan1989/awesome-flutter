@@ -1,0 +1,60 @@
+name: Flutter CI
+
+on:
+  push:
+    branches: [ main ]  # 当 main 分支有推送时触发
+  pull_request:
+    branches: [ main ]  # 当向 main 分支发起 PR 时触发
+
+jobs:
+  build:
+    runs-on: macos-latest  # 使用 macOS 环境以支持 iOS 打包
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3  # 检出代码到 runner
+
+      - name: Set up Flutter
+        uses: subosito/flutter-action@v2  # 设置 Flutter 环境
+        with:
+          channel: 'stable'  # 使用稳定版 Flutter
+
+      - name: Install dependencies
+        run: flutter pub get  # 获取依赖
+
+      - name: Format code
+        run: flutter format --set-exit-if-changed .  # 代码格式化检查
+
+      - name: Analyze code
+        run: flutter analyze .  # 代码静态分析
+
+      - name: Run tests
+        run: flutter test  # 运行单元测试
+
+      - name: Build Android APK
+        if: github.event_name == 'push'  # 仅在 push 时构建 APK
+        run: |
+          flutter build apk --release
+          mkdir -p android_release
+          cp build/app/outputs/flutter-apk/app-release.apk android_release/
+
+      - name: Build iOS IPA
+        if: github.event_name == 'push'  # 仅在 push 时构建 IPA
+        run: |
+          flutter build ipa --release
+          mkdir -p ios_release
+          cp build/ios/ipa/*.ipa ios_release/
+
+      - name: Upload Android APK
+        uses: actions/upload-artifact@v3  # 上传 APK 到 GitHub Actions 制品
+        if: github.event_name == 'push'
+        with:
+          name: android-release-apk
+          path: android_release/
+
+      - name: Upload iOS IPA
+        uses: actions/upload-artifact@v3  # 上传 IPA 到 GitHub Actions 制品
+        if: github.event_name == 'push'
+        with:
+          name: ios-release-ipa
+          path: ios_release/
