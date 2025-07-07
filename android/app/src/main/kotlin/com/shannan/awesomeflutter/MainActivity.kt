@@ -1,4 +1,4 @@
-package com.example.awesome_flutter
+package com.shannan.awesomeflutter
 
 import io.flutter.embedding.android.FlutterActivity
 
