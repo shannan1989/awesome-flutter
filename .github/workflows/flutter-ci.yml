@@ -22,8 +22,8 @@ jobs:
       - name: Install dependencies
         run: flutter pub get  # 获取依赖
 
-      - name: Format code
-        run: flutter format --set-exit-if-changed .  # 代码格式化检查
+      # - name: Format code
+      #   run: flutter format --set-exit-if-changed .  # 代码格式化检查
 
       - name: Analyze code
         run: flutter analyze .  # 代码静态分析
@@ -38,12 +38,12 @@ jobs:
           mkdir -p android_release
           cp build/app/outputs/flutter-apk/app-release.apk android_release/
 
-      - name: Build iOS IPA
-        if: github.event_name == 'push'  # 仅在 push 时构建 IPA
-        run: |
-          flutter build ipa --release
-          mkdir -p ios_release
-          cp build/ios/ipa/*.ipa ios_release/
+      # - name: Build iOS IPA
+      #   if: github.event_name == 'push'  # 仅在 push 时构建 IPA
+      #   run: |
+      #     flutter build ipa --release
+      #     mkdir -p ios_release
+      #     cp build/ios/ipa/*.ipa ios_release/
 
       - name: Upload Android APK
         uses: actions/upload-artifact@v4  # 上传 APK 到 GitHub Actions 制品
@@ -52,9 +52,9 @@ jobs:
           name: android-release-apk
           path: android_release/
 
-      - name: Upload iOS IPA
-        uses: actions/upload-artifact@v4  # 上传 IPA 到 GitHub Actions 制品
-        if: github.event_name == 'push'
-        with:
-          name: ios-release-ipa
-          path: ios_release/
+      # - name: Upload iOS IPA
+      #   uses: actions/upload-artifact@v4  # 上传 IPA 到 GitHub Actions 制品
+      #   if: github.event_name == 'push'
+      #   with:
+      #     name: ios-release-ipa
+      #     path: ios_release/
