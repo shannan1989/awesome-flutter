@@ -8,6 +8,8 @@ Flutter 使用的是 Dart 语言。
 
 - flutter analyze
 
+- flutter clean
+
 - flutter run
 
 - 获取依赖：执行 flutter pub get 命令，会根据pubspec.yaml的声明，获取依赖并更新pubspec.lock。
