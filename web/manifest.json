@@ -1,6 +1,6 @@
 {
-    "name": "awesome_flutter",
-    "short_name": "awesome_flutter",
+    "name": "awesomeflutter",
+    "short_name": "awesomeflutter",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",
