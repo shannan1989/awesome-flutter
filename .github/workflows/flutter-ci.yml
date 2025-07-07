@@ -12,7 +12,7 @@ jobs:
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v3  # 检出代码到 runner
+        uses: actions/checkout@v4  # 检出代码到 runner
 
       - name: Set up Flutter
         uses: subosito/flutter-action@v2  # 设置 Flutter 环境
@@ -46,14 +46,14 @@ jobs:
           cp build/ios/ipa/*.ipa ios_release/
 
       - name: Upload Android APK
-        uses: actions/upload-artifact@v3  # 上传 APK 到 GitHub Actions 制品
+        uses: actions/upload-artifact@v4  # 上传 APK 到 GitHub Actions 制品
         if: github.event_name == 'push'
         with:
           name: android-release-apk
           path: android_release/
 
       - name: Upload iOS IPA
-        uses: actions/upload-artifact@v3  # 上传 IPA 到 GitHub Actions 制品
+        uses: actions/upload-artifact@v4  # 上传 IPA 到 GitHub Actions 制品
         if: github.event_name == 'push'
         with:
           name: ios-release-ipa
