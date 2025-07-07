@@ -89,13 +89,13 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.example" "\0"
-            VALUE "FileDescription", "awesome_flutter" "\0"
+            VALUE "CompanyName", "山南" "\0"
+            VALUE "FileDescription", "awesomeflutter" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
-            VALUE "InternalName", "awesome_flutter" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.example. All rights reserved." "\0"
-            VALUE "OriginalFilename", "awesome_flutter.exe" "\0"
-            VALUE "ProductName", "awesome_flutter" "\0"
+            VALUE "InternalName", "awesomeflutter" "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 山南. All rights reserved." "\0"
+            VALUE "OriginalFilename", "awesomeflutter.exe" "\0"
+            VALUE "ProductName", "awesomeflutter" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
         END
     END
